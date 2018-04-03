@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+	<head>
+		<title>Hello App Vue JS</title>
+		<script src="https://unpkg.com/vue"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>Hello {{name}}</h1>
+			<h3>{{userInfo}}</h3>
+			<h3><a :href="url">MegaWeb</a></h3>
+			<button @click="changeName">Change</button>
+			<br><br>
+			Add Item: <input type="text" v-model="currentItem">
+			<button @click="addItem">Add Item</button>
+			<br><br>
+			<div v-if="items.length > 0">
+				Items
+				<ul>
+					<li v-for="item in items">{{item}}</li>
+				</ul>
+			</div>
+		</div>
+
+		<script>
+			new Vue({
+				el:'#app',
+				data:{
+					name: 'Pavel',
+					age: '31',
+					currentItem: 'Vuejs',
+					items: [],
+					url: 'http://megaweb.kz/'
+				},
+				methods:{
+					changeName: function(){
+						this.name = "Artem";
+					},
+					addItem: function(){
+						this.items.push(this.currentItem);
+					}
+				},
+				computed:{
+					userInfo: function(){
+						return this.name + " is " + this.age
+					}
+				},
+				watch:{
+					name: function(){
+						console.log(this.name);
+					}
+				}
+			})	
+		</script>
+	</body>
+</html>
